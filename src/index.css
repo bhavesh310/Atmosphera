@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light warm beige palette */
+    --bg: #e8ddd0;
+    --bg-secondary: #ddd0c0;
+    --glass: rgba(190, 170, 145, 0.25);
+    --glass-hover: rgba(190, 170, 145, 0.35);
+    --border-glass: rgba(160, 140, 110, 0.3);
+    --border-glass-hover: rgba(160, 140, 110, 0.5);
+    --text-primary: #3d2e1e;
+    --text-muted: #8a7560;
+    --text-dim: #b0a090;
+    --accent: #9c7a50;
+
+    /* Shadcn tokens */
+    --background: 30 22% 86%;
+    --foreground: 28 30% 18%;
+    --card: 30 22% 82%;
+    --card-foreground: 28 30% 18%;
+    --popover: 30 22% 82%;
+    --popover-foreground: 28 30% 18%;
+    --primary: 30 32% 46%;
+    --primary-foreground: 30 22% 94%;
+    --secondary: 30 18% 78%;
+    --secondary-foreground: 28 30% 18%;
+    --muted: 30 18% 80%;
+    --muted-foreground: 28 14% 50%;
+    --accent: 30 18% 78%;
+    --accent-foreground: 28 30% 18%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 30 22% 94%;
+    --border: 30 18% 75%;
+    --input: 30 18% 75%;
+    --ring: 30 32% 46%;
+    --radius: 0.75rem;
+
+    /* Weather accent colors — warm earthy tones */
+    --weather-clear: #b8860b;
+    --weather-cloudy: #8a7560;
+    --weather-rain: #6a8fa0;
+    --weather-snow: #a0a0a0;
+    --weather-thunder: #7a6080;
+    --weather-fog: #9c9080;
+
+    /* Gradients */
+    --gradient-bg: radial-gradient(ellipse at 20% 50%, rgba(220,205,185,0.9) 0%, #e8ddd0 70%);
+    --gradient-glass: linear-gradient(135deg, rgba(190,170,145,0.15) 0%, rgba(180,160,130,0.05) 100%);
+
+    /* Typography */
+    --font-display: 'Cormorant Garant', Georgia, serif;
+    --font-mono: 'DM Mono', 'Courier New', monospace;
+
+    /* Shadows */
+    --shadow-glass: 0 4px 20px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.4);
+    --shadow-soft: 0 2px 12px rgba(0,0,0,0.06);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    @apply overflow-hidden;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--bg);
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(156,122,80,0.3);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(156,122,80,0.5);
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(220, 210, 195, 0.7);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(180, 160, 130, 0.4);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5);
+    border-radius: 16px;
+  }
+
+  .glass-panel:hover {
+    border-color: rgba(180, 160, 130, 0.6);
+    background: rgba(225, 215, 200, 0.8);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono-custom {
+    font-family: var(--font-mono);
+  }
+
+  .text-accent-weather {
+    color: var(--accent);
+  }
+
+  .glow-accent {
+    text-shadow: none;
+  }
+
+  .search-underline {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-glass);
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    transition: border-color 0.3s ease;
+  }
+
+  .search-underline:focus {
+    border-bottom-color: var(--accent);
+  }
+
+  .search-underline::placeholder {
+    color: var(--text-muted);
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(0,0,0,0.02) 0%,
+      rgba(0,0,0,0.06) 50%,
+      rgba(0,0,0,0.02) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  .stat-pill {
+    background: rgba(200, 185, 165, 0.5);
+    border: 1px solid rgba(180, 160, 130, 0.3);
+    border-radius: 999px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+@layer utilities {
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
